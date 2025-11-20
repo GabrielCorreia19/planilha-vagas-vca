@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planilha do Processo Seletivo R&S</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            padding: 1rem;
+        }
+
+        .container {
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            border-radius: 1rem 1rem 0 0;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            border-bottom: 4px solid #1e3a8a;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .logo-container {
+            width: 160px;
+            height: 64px;
+            background: white;
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .logo-container img {
+            width: 215px;
+        }
+
+        .logo-text {
+            color: #1e3a8a;
+            font-weight: bold;
+            font-size: 1.125rem;
+            text-align: center;
+        }
+
+        .title-container {
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 0.25rem;
+        }
+
+        .subtitle {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        /* Info Cards */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .info-card {
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
+
+        .info-card.blue {
+            background: linear-gradient(to right, #eff6ff, #dbeafe);
+        }
+
+        .info-card.amber {
+            background: linear-gradient(to right, #fffbeb, #fef3c7);
+        }
+
+        .info-card.slate {
+            background: linear-gradient(to right, #f8fafc, #f1f5f9);
+        }
+
+        .info-label {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-card.blue .info-label { color: #1e40af; }
+        .info-card.amber .info-label { color: #b45309; }
+        .info-card.slate .info-label { color: #475569; }
+
+        .info-value {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .info-card.blue .info-value { color: #1e3a8a; }
+        .info-card.amber .info-value { color: #78350f; }
+        .info-card.slate .info-value { color: #0f172a; }
+
+        /* Table */
+        .table-container {
+            background: white;
+            border-radius: 0 0 1rem 1rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead tr {
+            background: linear-gradient(to right, #1e3a8a, #1e40af);
+            color: white;
+        }
+
+        th {
+            padding: 0.75rem;
+            text-align: left;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e5e7eb;
+            transition: background-color 0.2s;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #eff6ff;
+        }
+
+        tbody tr:hover {
+            background: #dbeafe;
+        }
+
+        td {
+            padding: 0.75rem;
+            white-space: nowrap;
+        }
+
+        .name-cell {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #111827;
+        }
+
+        .cargo-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.25rem 0.5rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            background: #fef3c7;
+            color: #78350f;
+        }
+
+        .contact-cell {
+            font-size: 0.75rem;
+            color: #374151;
+        }
+
+        .salary-cell {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #15803d;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(to right, #f8fafc, #e0f2fe);
+            padding: 0.75rem 1rem;
+            border-top: 2px solid #1e3a8a;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-text {
+            font-size: 0.75rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .footer-count {
+            font-weight: bold;
+            color: #1e3a8a;
+        }
+
+        .footer-date {
+            font-size: 0.75rem;
+            color: #6b7280;
+        }
+
+        /* Responsive */
+        @media (min-width: 768px) {
+            body {
+                padding: 2rem;
+            }
+
+            .header {
+                padding: 2rem;
+            }
+
+            .header-content {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .logo-container {
+                width: 192px;
+                height: 80px;
+            }
+
+            .title-container {
+                border-left: 4px solid #d97706;
+                padding-left: 1.5rem;
+                text-align: left;
+            }
+
+            .main-title {
+                font-size: 1.875rem;
+            }
+
+            .subtitle {
+                font-size: 0.875rem;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .info-card {
+                padding: 1rem;
+            }
+
+            .info-value {
+                font-size: 1.125rem;
+            }
+
+            th {
+                padding: 1rem 1.5rem;
+                font-size: 0.875rem;
+            }
+
+            td {
+                padding: 1rem 1.5rem;
+            }
+
+            .name-cell, .contact-cell, .salary-cell {
+                font-size: 0.875rem;
+            }
+
+            .footer {
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 1rem 1.5rem;
+            }
+
+            .footer-text, .footer-date {
+                font-size: 0.875rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-content">
+                <div class="logo-container">
+                    <img src="fcf54fcd-b290-4e09-97a6-0e6dab580c79-removebg-preview.png" 
+                         alt="Decisão Brasil RH"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'logo-text\'>DECISÃO BRASIL RH</div>';">
+                </div>
+                <div class="title-container">
+                    <h1 class="main-title">PLANILHA DO PROCESSO SELETIVO R&S</h1>
+                    <p class="subtitle">Recursos Humanos</p>
+                </div>
+            </div>
+
+            <!-- Info Cards -->
+            <div class="info-grid">
+                <div class="info-card blue">
+                    <p class="info-label">Cidade</p>
+                    <p class="info-value">Vitória da Conquista</p>
+                </div>
+                <div class="info-card amber">
+                    <p class="info-label">Processo R&S</p>
+                    <p class="info-value">Decisão Brasil RH</p>
+                </div>
+                <div class="info-card slate">
+                    <p class="info-label">Contratante</p>
+                    <p class="info-value">SEGRA</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="table-container">
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cargo</th>
+                            <th>Contato</th>
+                            <th>Sugestão Salarial</th>
+                        </tr>
+                    </thead>
+                    <tbody id="candidatos-tbody">
+                        <!-- Preenchido via JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <p class="footer-text">
+                    <span class="footer-count" id="total-candidatos">0</span> candidatos selecionados
+                </p>
+                <p class="footer-date" id="data-geracao"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Dados dos candidatos
+        const candidatos = [
+            { nome: "Rosemar Mendes", cargo: "Assistente ADM", contato: "77 99824-3384", salario: "R$ 2.500,00" },
+            { nome: "Rebeca Santos", cargo: "Auxiliar ADM", contato: "77 98113-3198", salario: "R$ 2.000,00" },
+            { nome: "Deise Rocha", cargo: "Recepcionista", contato: "77 98160-3636", salario: "R$ 1.700,00" },
+            { nome: "Rafaella Batista", cargo: "Recepcionista", contato: "77 98128-5923", salario: "R$ 1.700,00" },
+            { nome: "Laércio Rocha", cargo: "Técnico Informática", contato: "77 98801-6656", salario: "R$ 2.500,00" },
+            { nome: "Nadja Teixeira", cargo: "Vigilante", contato: "77 98865-1194", salario: "Piso + Adicional" },
+            { nome: "Erinaldo Santos", cargo: "Vigilante", contato: "11 96020-1270", salario: "Piso + Adicional" },
+            { nome: "Uarlei Ribeiro", cargo: "Vigilante", contato: "77 98150-1224", salario: "Piso + Adicional" },
+            { nome: "Katia Ferreira", cargo: "Vigilante", contato: "77 98819-4686", salario: "Piso + Adicional" },
+            { nome: "Rose Nadja", cargo: "ASG", contato: "77 99140-0732", salario: "R$ 1.600,00 + Adc" },
+            { nome: "Ana Paula", cargo: "ASG", contato: "77 98120-7273", salario: "R$ 1.600,00 + Adc" }
+        ];
+
+        // Preencher tabela
+        const tbody = document.getElementById('candidatos-tbody');
+        candidatos.forEach(candidato => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+                <td><span class="name-cell">${candidato.nome}</span></td>
+                <td><span class="cargo-badge">${candidato.cargo}</span></td>
+                <td><span class="contact-cell">${candidato.contato}</span></td>
+                <td><span class="salary-cell">${candidato.salario}</span></td>
+            `;
+            tbody.appendChild(tr);
+        });
+
+        // Atualizar contadores
+        document.getElementById('total-candidatos').textContent = candidatos.length;
+        
+        // Data de geração
+        const dataAtual = new Date().toLocaleDateString('pt-BR');
+        document.getElementById('data-geracao').textContent = `Documento gerado em ${dataAtual}`;
+    </script>
+</body>
+</html>
