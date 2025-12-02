@@ -29,7 +29,6 @@
         border-radius: 1rem 1rem 0 0;
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         padding: 1.5rem;
-        border-bottom: 4px solid #1e3a8a;
       }
 
       .header-content {
@@ -38,6 +37,13 @@
         align-items: center;
         gap: 1rem;
         margin-bottom: 1.5rem;
+      }
+
+      .header-descritivo {
+        border-radius: 1rem 1rem 0 0;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        padding: 0.5rem 1rem 2rem 1rem;
+        border-bottom: 4px solid #1e3a8a;
       }
 
       .logo-container {
@@ -85,7 +91,7 @@
         grid-template-columns: 1fr;
         gap: 0.75rem;
         margin-top: 1.5rem;
-        padding-top: 1.5rem;
+        padding-top: 0.5rem;
         border-top: 1px solid #e5e7eb;
       }
 
@@ -104,6 +110,9 @@
 
       .info-card.slate {
         background: linear-gradient(to right, #f8fafc, #f1f5f9);
+      }
+      .info-card.black {
+        background: linear-gradient(to right, #f8fafc, #9A9C9D);
       }
 
       .info-label {
@@ -137,6 +146,18 @@
       }
       .info-card.slate .info-value {
         color: #0f172a;
+      }
+
+      .info-card.green {
+        background: linear-gradient(to right, #f0fdf4, #dcfce7);
+      }
+
+      .info-card.green .info-label {
+        color: #166534;
+      }
+
+      .info-card.green .info-value {
+        color: #15803d;
       }
 
       /* Table */
@@ -253,7 +274,7 @@
         }
 
         .header {
-          padding: 2rem;
+          margin-left: 1rem;
         }
 
         .header-content {
@@ -281,7 +302,7 @@
         }
 
         .info-grid {
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(5, 1fr);
           gap: 1rem;
         }
 
@@ -345,7 +366,9 @@
             />
           </div>
           <div class="title-container">
-            <h1 class="main-title">PLANILHA DO PROCESSO SELETIVO R&S</h1>
+            <h1 class="main-title">
+              DESCRITIVO DOS SERVIÇOS DE R&S DE PROFSSIONAIS
+            </h1>
             <p class="subtitle">Recursos Humanos</p>
           </div>
         </div>
@@ -363,6 +386,14 @@
           <div class="info-card slate">
             <p class="info-label">Contratante</p>
             <p class="info-value">SEGRA</p>
+          </div>
+          <div class="info-card black">
+            <p class="info-label">Status</p>
+            <p class="info-value">Concluído</p>
+          </div>
+          <div class="info-card green">
+            <p class="info-label">Serviços complementares + 50% Final</p>
+            <p class="info-value">R$ 12.330,00</p>
           </div>
         </div>
       </div>
@@ -393,6 +424,27 @@
           </p>
           <p class="footer-date" id="data-geracao"></p>
         </div>
+
+        <!-- Billing Section -->
+        <!-- <div class="header-descritivo" style="border-radius: 1rem">
+          <h2 class="main-title">
+            DESCRITIVO DE FATURAMENTO
+          </h2>
+          <div class="info-grid" style="border-top: none; margin-top: 0">
+            <div class="info-card amber">
+              <p class="info-label">Serviço</p>
+              <p class="info-value">Recrutamento & Seleção</p>
+            </div>
+            <div class="info-card slate">
+              <p class="info-label">Status</p>
+              <p class="info-value">Concluído</p>
+            </div>
+            <div class="info-card green">
+              <p class="info-label">Serviços complementares + 50% Final</p>
+              <p class="info-value">R$ 12.330,00</p>
+            </div>
+          </div>
+        </div> -->
       </div>
     </div>
 
